@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.github.mastralexis.jgengine.Main;
+import io.github.mastralexis.jgengine.engine.utils.Logs;
 
 
 public class MenuScreen implements Screen {
@@ -27,8 +28,8 @@ public class MenuScreen implements Screen {
 
     public MenuScreen(Main game) {
         this.game = game;
-        stage = new Stage(new ScreenViewport());
-        skin = new Skin(Gdx.files.internal("skins/uiskin.json"));
+        stage = new Stage(new ScreenViewport(), game.batch);    // with game.batch it tell libgdx to use the already created batch from the Main.java (if i didn't put it it would make a new batch just for the manu)
+        skin = game.assets.getSkin("skins/uiskin.json");
 
         Table table = new Table();  // like html table
         table.setFillParent(true);  // take up the whole screen
@@ -47,22 +48,21 @@ public class MenuScreen implements Screen {
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // Switch to the Gameplay Screen
-//                game.setScreen(new GameplayScreen(game));
-                System.out.println("No game here\n Just quit man");
+                Logs.log("Menu", "Start Game pressed - logic not implemented yet");
             }
         });
 
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("Go to Options Screen...");
+                Logs.log("Menu", "Options pressed");
             }
         });
 
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                Logs.log("Menu", "Quitting application");
                 Gdx.app.exit(); // Close the app
             }
         });
@@ -97,7 +97,7 @@ public class MenuScreen implements Screen {
 
         // 6. Add Buttons to Table (with padding)
         table.add(startButton).fillX().uniformX();
-        table.row().pad(10, 0, 10, 0);
+        table.row().pad(20, 0, 20, 0);
         table.add(optionsButton).fillX().uniformX();
         table.row();
         table.add(quitButton).fillX().uniformX();
@@ -137,7 +137,6 @@ public class MenuScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
-        skin.dispose();
     }
 
     @Override
