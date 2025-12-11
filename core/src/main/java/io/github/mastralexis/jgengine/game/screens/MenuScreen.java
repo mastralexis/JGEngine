@@ -48,7 +48,9 @@ public class MenuScreen implements Screen {
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Logs.log("Menu", "Start Game pressed - logic not implemented yet");
+                Logs.log("Menu", "Start Game pressed");
+                // 3. Switch Screen
+                game.setScreen(new GameplayScreen(game));
             }
         });
 
