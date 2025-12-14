@@ -22,13 +22,13 @@ public class GameplayScreen implements Screen {
 
     public GameplayScreen(Main game) {
         this.game = game;
-        // init scene
-        this.scene = new Scene();
 
-        // add systems
-        this.scene.addGameSystem(new RenderSystem(game.batch));
-        this.scene.addGameSystem(new PlayerInputSystem());
-        this.scene.addGameSystem(new MovementSystem());
+        scene = new Scene();    // create the scene of that Screen
+
+        // add systems that are going to be used in that screen
+        scene.addGameSystem(new RenderSystem(game.batch));
+        scene.addGameSystem(new PlayerInputSystem());
+        scene.addGameSystem(new MovementSystem());
 
         createPlayer();
     }
@@ -46,15 +46,17 @@ public class GameplayScreen implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
+
         game.batch.begin();  // We must begin/end the batch because your RenderSystem calls batch.draw()
         scene.update(delta); // This triggers RenderSystem.update() -> batch.draw()
         game.batch.end();
 
-        // Input Handling (Temporary Exit Logic)
+        // =============== Temporary Exit Logic ===============
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             game.setScreen(new MenuScreen(game)); // Return to menu
             dispose(); // Clean up this screen
         }
+        // =============== Temporary Exit Logic ===============
     }
 
     @Override public void pause() {}

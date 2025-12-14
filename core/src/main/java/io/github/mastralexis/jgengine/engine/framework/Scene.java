@@ -5,19 +5,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 
+/**
+ * Acts as a Manager for Entities and System
+ * Can add Entities and Systems to the Current Scene
+ * Uses all Systems each frame
+ */
 public class Scene {
     private Map<Integer, GameObject> objectMap = new HashMap<>();
     private List<GameObject> objects = new ArrayList<>();
     private List<GameSystem> systems = new ArrayList<>();
 
-    public void addGameObject(GameObject gameObject){
+    public void addGameObject(GameObject gameObject) {
         objects.add(gameObject);
         objectMap.put(gameObject.getId(), gameObject);
     }
 
-    public void addGameSystem(GameSystem gameSystem){
-        systems.add(gameSystem);
-        gameSystem.attach(this);    // tell system to runs
+    public void addGameSystem(GameSystem gameSystem) {
+        systems.add(gameSystem);        // add system
+        gameSystem.attach(this); // make the system access the scene
     }
 
     public void update(float delta) {
@@ -32,7 +37,7 @@ public class Scene {
             GameObject obj = objects.get(i);
             if (!obj.isActive()) {
                 objects.remove(i);             // Remove from List
-                objectMap.remove(obj.getId()); // Remove from Map (Crucial!)
+                objectMap.remove(obj.getId()); // Remove from Map
             }
         }
     }

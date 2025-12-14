@@ -2,6 +2,9 @@ package io.github.mastralexis.jgengine.engine.utils;
 
 import com.badlogic.gdx.Gdx;
 
+/**
+ * Basic Log class that uses libgdx log
+ */
 public class Logs {
     public static boolean DEBUG = true;
 
