@@ -38,7 +38,7 @@ public class GameplayScreen implements Screen {
         GameObject player = new GameObject("Player")
             .addComponent(new PositionComponent(100, 100))
             .addComponent(new VelocityComponent(150f))
-            .addComponent(new SpriteComponent(playerTexture))
+            .addComponent(new SpriteComponent(playerTexture, 64, 64))
             .addComponent(new PlayerComponent());
         scene.addGameObject(player);
     }

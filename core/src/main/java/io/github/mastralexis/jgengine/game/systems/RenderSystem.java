@@ -21,7 +21,7 @@ public class RenderSystem extends GameSystem {
             if (go.hasComponent(PositionComponent.class) && go.hasComponent(SpriteComponent.class)) {
                 PositionComponent pos = go.getComponent(PositionComponent.class);
                 SpriteComponent sprite = go.getComponent(SpriteComponent.class);
-                batch.draw(sprite.texture, pos.x, pos.y);
+                batch.draw(sprite.textureRegion, pos.x, pos.y, sprite.width, sprite.height);
             }
         }
     }
