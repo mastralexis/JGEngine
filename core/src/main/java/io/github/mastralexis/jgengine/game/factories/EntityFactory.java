@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import io.github.mastralexis.jgengine.Main;
 import io.github.mastralexis.jgengine.engine.framework.GameObject;
 import io.github.mastralexis.jgengine.game.components.HealthComponent;
-import io.github.mastralexis.jgengine.game.components.PositionComponent;
+import io.github.mastralexis.jgengine.game.components.TransformComponent;
 import io.github.mastralexis.jgengine.game.components.SpriteComponent;
 
 public class EntityFactory {
@@ -40,7 +40,7 @@ public class EntityFactory {
 
         // 3. Build the GameObject
         return new GameObject(type)
-            .addComponent(new PositionComponent(x, y))
+            .addComponent(new TransformComponent(x, y))
             .addComponent(new SpriteComponent(game.assets.getTexture(textureName)))
             .addComponent(new HealthComponent(hp));
     }

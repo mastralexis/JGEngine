@@ -3,15 +3,12 @@ package io.github.mastralexis.jgengine.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.mastralexis.jgengine.Main;
 import io.github.mastralexis.jgengine.engine.framework.GameObject;
 import io.github.mastralexis.jgengine.engine.framework.Scene;
-import io.github.mastralexis.jgengine.game.components.PlayerComponent;
-import io.github.mastralexis.jgengine.game.components.PositionComponent;
-import io.github.mastralexis.jgengine.game.components.SpriteComponent;
-import io.github.mastralexis.jgengine.game.components.VelocityComponent;
+import io.github.mastralexis.jgengine.game.components.*;
+import io.github.mastralexis.jgengine.game.systems.DebugRenderSystem;
 import io.github.mastralexis.jgengine.game.systems.MovementSystem;
 import io.github.mastralexis.jgengine.game.systems.PlayerInputSystem;
 import io.github.mastralexis.jgengine.game.systems.RenderSystem;
@@ -26,21 +23,35 @@ public class GameplayScreen implements Screen {
         scene = new Scene();    // create the scene of that Screen
 
         // add systems that are going to be used in that screen
-        scene.addGameSystem(new RenderSystem(game.batch));
+        //scene.addGameSystem(new RenderSystem(game.batch));
         scene.addGameSystem(new PlayerInputSystem());
         scene.addGameSystem(new MovementSystem());
+        scene.addGameSystem(new DebugRenderSystem());
 
         createPlayer();
+        createWall();
     }
 
     private void createPlayer() {
-        Texture playerTexture = game.assets.getTexture("sprites/player/wayne-t-pose-scaled.png");
+        SpriteComponent sprite = new SpriteComponent(game.assets.getTexture("sprites/player/wayne-t-pose.png"), 128, 128);
         GameObject player = new GameObject("Player")
-            .addComponent(new PositionComponent(100, 100))
-            .addComponent(new VelocityComponent(150f))
-            .addComponent(new SpriteComponent(playerTexture, 64, 64))
-            .addComponent(new PlayerComponent());
+            .addComponent(sprite)
+            .addComponent(new TransformComponent(100, 100))
+            .addComponent(new VelocityComponent(250f))
+            .addComponent(new PlayerComponent())
+            .addComponent(new BoxColliderComponent(sprite.width - 25, sprite.height));
         scene.addGameObject(player);
+    }
+
+    private void createWall() {
+
+        SpriteComponent sprite = new SpriteComponent(game.assets.getTexture("sprites/player/wayne-t-pose.png"), 128, 128);
+        GameObject wall = new GameObject("Wall")
+            .addComponent(new TransformComponent(300, 300))
+            .addComponent(sprite)
+            .addComponent(new BoxColliderComponent(sprite.width - 25, sprite.height));
+
+        scene.addGameObject(wall);
     }
 
     @Override

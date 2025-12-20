@@ -36,7 +36,7 @@ public class EngineAssetManager implements Disposable {
         // Queue loading tasks (doesn't load yet)
         manager.load("libgdx.png", Texture.class);
         manager.load("skins/uiskin.json", Skin.class);
-        manager.load("sprites/player/wayne-t-pose-scaled.png", Texture.class);
+        manager.load("sprites/player/wayne-t-pose.png", Texture.class);
     }
 
     public void finishLoading() {
