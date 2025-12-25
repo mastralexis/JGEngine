@@ -1,0 +1,48 @@
+package io.github.mastralexis.jgengine.game.systems;
+
+import io.github.mastralexis.jgengine.engine.framework.Family;
+import io.github.mastralexis.jgengine.engine.framework.GameObject;
+import io.github.mastralexis.jgengine.engine.framework.GameSystem;
+import io.github.mastralexis.jgengine.game.components.InputComponent;
+import io.github.mastralexis.jgengine.game.components.VelocityComponent;
+
+// Translates Input from InputComponent into Velocity (intent to motion)
+public class PlayerControlSystem extends GameSystem {
+
+    private final Family family;
+
+    public PlayerControlSystem() {
+        this.family = Family.of(InputComponent.class, VelocityComponent.class);
+    }
+
+    @Override
+    public void update(float delta) {
+        for (GameObject obj : scene.getGameObjects(family)) {
+            InputComponent input = obj.getComponent(InputComponent.class);
+            VelocityComponent vel = obj.getComponent(VelocityComponent.class);
+
+            // Apply the Input to the Velocity
+            // IMPORTANT: We only modify velocity if there IS input.
+            // This allows knockback/external forces to degrade naturally if we aren't pressing keys.
+
+            if (input.horizontal != 0 || input.vertical != 0) {
+                vel.x = input.horizontal * vel.speed;
+                vel.y = input.vertical * vel.speed;
+
+                // Normalize vector for diagonals
+                if (input.horizontal != 0 && input.vertical != 0) {
+                    vel.x *= 0.7071f;
+                    vel.y *= 0.7071f;
+                }
+            } else {
+                // If no input, WE decide how to stop.
+                // Instant stop (Arcade style):
+                vel.x = 0;
+                vel.y = 0;
+
+                // OR Friction stop (Better for knockback):
+                // vel.x = MathUtils.lerp(vel.x, 0, 10 * delta);
+            }
+        }
+    }
+}

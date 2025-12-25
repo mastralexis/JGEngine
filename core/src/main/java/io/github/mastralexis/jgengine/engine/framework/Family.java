@@ -12,6 +12,11 @@ import java.util.Set;
  * 1. Systems define a Family to specify what data they need (e.g., Position + Sprite).
  * 2. The Scene uses this Family object as a key in a Map (Cache) to store a list of pre-filtered entities.
  * 3. This avoids looping through every single object in the game every frame.
+ *
+ * <p>
+ *     Currently I cannot add a component to an GameObject after the object has been updated
+ *     Because I don't update the families after that but that's ok because I'm not going to do it.
+ * <p/>
  */
 public record Family(Set<Class<? extends GameComponent>> components) {
 

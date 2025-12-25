@@ -8,10 +8,7 @@ import io.github.mastralexis.jgengine.Main;
 import io.github.mastralexis.jgengine.engine.framework.GameObject;
 import io.github.mastralexis.jgengine.engine.framework.Scene;
 import io.github.mastralexis.jgengine.game.components.*;
-import io.github.mastralexis.jgengine.game.systems.DebugRenderSystem;
-import io.github.mastralexis.jgengine.game.systems.MovementSystem;
-import io.github.mastralexis.jgengine.game.systems.PlayerInputSystem;
-import io.github.mastralexis.jgengine.game.systems.RenderSystem;
+import io.github.mastralexis.jgengine.game.systems.*;
 
 public class GameplayScreen implements Screen {
     final Main game;
@@ -25,8 +22,9 @@ public class GameplayScreen implements Screen {
         // add systems that are going to be used in that screen
         //scene.addGameSystem(new RenderSystem(game.batch));
         scene.addGameSystem(new PlayerInputSystem());
+        scene.addGameSystem(new PlayerControlSystem());
         scene.addGameSystem(new MovementSystem());
-        scene.addGameSystem(new DebugRenderSystem());
+        scene.addGameSystem(new RenderSystem(game.batch));
 
         createPlayer();
         createWall();
@@ -39,7 +37,8 @@ public class GameplayScreen implements Screen {
             .addComponent(new TransformComponent(100, 100))
             .addComponent(new VelocityComponent(250f))
             .addComponent(new PlayerComponent())
-            .addComponent(new BoxColliderComponent(sprite.width - 25, sprite.height));
+            .addComponent(new BoxColliderComponent(sprite.width - 25, sprite.height)).
+            addComponent(new InputComponent());
         scene.addGameObject(player);
     }
 
