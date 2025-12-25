@@ -26,7 +26,7 @@ public class PlayerControlSystem extends GameSystem {
             // This allows knockback/external forces to degrade naturally if we aren't pressing keys.
 
             if (input.horizontal != 0 || input.vertical != 0) {
-                vel.x = input.horizontal * vel.speed;
+                vel.x = input.horizontal * vel.speed;   // speed * axis
                 vel.y = input.vertical * vel.speed;
 
                 // Normalize vector for diagonals
