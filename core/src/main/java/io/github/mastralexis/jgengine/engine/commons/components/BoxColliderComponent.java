@@ -1,4 +1,4 @@
-package io.github.mastralexis.jgengine.game.components;
+package io.github.mastralexis.jgengine.engine.commons.components;
 
 import com.badlogic.gdx.math.Rectangle;
 import io.github.mastralexis.jgengine.engine.framework.GameComponent;

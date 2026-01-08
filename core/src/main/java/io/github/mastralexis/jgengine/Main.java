@@ -3,7 +3,7 @@ package io.github.mastralexis.jgengine;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.github.mastralexis.jgengine.engine.core.EngineAssetManager;
-import io.github.mastralexis.jgengine.game.screens.MenuScreen;
+import io.github.mastralexis.jgengine.game.screens.TitleScreen;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {
@@ -20,7 +20,7 @@ public class Main extends Game {
         assets.finishLoading();       // Blocks until everything is ready
 
         // Start the Menu
-        this.setScreen(new MenuScreen(this));
+        this.setScreen(new TitleScreen(this));
     }
 
     @Override

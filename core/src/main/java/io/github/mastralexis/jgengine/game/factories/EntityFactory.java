@@ -5,8 +5,8 @@ import com.badlogic.gdx.utils.JsonValue;
 import io.github.mastralexis.jgengine.Main;
 import io.github.mastralexis.jgengine.engine.framework.GameObject;
 import io.github.mastralexis.jgengine.game.components.HealthComponent;
-import io.github.mastralexis.jgengine.game.components.TransformComponent;
-import io.github.mastralexis.jgengine.game.components.SpriteComponent;
+import io.github.mastralexis.jgengine.engine.commons.components.TransformComponent;
+import io.github.mastralexis.jgengine.engine.commons.components.SpriteComponent;
 
 public class EntityFactory {
     private final Main game;

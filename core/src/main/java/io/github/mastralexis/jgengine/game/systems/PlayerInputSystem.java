@@ -7,7 +7,6 @@ import io.github.mastralexis.jgengine.engine.framework.GameObject;
 import io.github.mastralexis.jgengine.engine.framework.GameSystem;
 import io.github.mastralexis.jgengine.game.components.InputComponent;
 import io.github.mastralexis.jgengine.game.components.PlayerComponent;
-import io.github.mastralexis.jgengine.game.components.VelocityComponent;
 
 // Translates hardware to intent.
 public class PlayerInputSystem extends GameSystem {
