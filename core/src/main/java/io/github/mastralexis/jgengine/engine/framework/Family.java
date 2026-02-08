@@ -1,5 +1,7 @@
 package io.github.mastralexis.jgengine.engine.framework;
 
+import com.badlogic.gdx.utils.Bits;
+
 import java.util.Set;
 
 /**
@@ -18,8 +20,12 @@ import java.util.Set;
  *     Because I don't update the families after that but that's ok because I'm not going to do it.
  * <p/>
  */
-public record Family(Set<Class<? extends GameComponent>> components) {
+public class Family {
+    private final Bits requiredBits;
 
+    private Family(Bits bits) {
+        this.requiredBits = bits;
+    }
     /**
      * A static factory method to easily create a Family without manually creating a Set.
      * <p>
@@ -30,9 +36,12 @@ public record Family(Set<Class<? extends GameComponent>> components) {
      */
     @SafeVarargs
     public static Family of(Class<? extends GameComponent>... components) {
-        return new Family(Set.of(components));
+        Bits bits = new Bits();
+        for (Class<? extends GameComponent> c : components) {
+            bits.set(ComponentType.getIndexFor(c));
+        }
+        return new Family(bits);
     }
-
 
     /**
      * Checks if a specific GameObject belongs to this Family.
@@ -45,6 +54,20 @@ public record Family(Set<Class<? extends GameComponent>> components) {
      * @return true if the object has all the required components; false otherwise.
      */
     public boolean matches(GameObject gameObject) {
-        return components.stream().allMatch(gameObject::hasComponent);
+        // Returns true if the object's bits contain all of the family's required bits
+        return gameObject.getComponentBits().containsAll(requiredBits);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Family family = (Family) o;
+        return requiredBits.equals(family.requiredBits);
+    }
+
+    @Override
+    public int hashCode() {
+        return requiredBits.hashCode();
     }
 }

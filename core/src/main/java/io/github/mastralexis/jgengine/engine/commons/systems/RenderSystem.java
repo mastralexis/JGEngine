@@ -22,6 +22,7 @@ public class RenderSystem extends GameSystem {
         for (GameObject go : scene.getGameObjects(renderFamily)) {
             // to use this system we only need Position and SpriteComponents
             TransformComponent transform = go.getComponent(TransformComponent.class);
+            if (transform == null) return;
             SpriteComponent sprite = go.getComponent(SpriteComponent.class);
             // Get the origin (center of the sprite) for rotation
             float originX = sprite.width / 2f;
