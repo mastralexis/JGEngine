@@ -29,13 +29,13 @@ public class LoadingScreen implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
 
-        // 3. The Magic: update() returns TRUE when loading is done
+        // update() returns TRUE when loading is done
         if (game.assets.manager.update()) {
-            // Loading complete! Switch to the actual game
+            // loading complete! Switch to the actual game
             game.setScreen(new GameplayScreen(game));
         }
 
-        // 4. Optional: Draw a loading bar here using game.assets.manager.getProgress()
+        // draw a loading bar here using game.assets.manager.getProgress()
         float progress = game.assets.manager.getProgress();
         System.out.println("Loading... " + (progress * 100) + "%");
     }

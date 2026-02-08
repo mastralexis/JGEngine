@@ -8,7 +8,7 @@ import io.github.mastralexis.jgengine.engine.framework.GameSystem;
 import io.github.mastralexis.jgengine.game.components.InputComponent;
 import io.github.mastralexis.jgengine.game.components.PlayerComponent;
 
-// Translates hardware to intent.
+// translates hardware to intent
 public class PlayerInputSystem extends GameSystem {
 
     private final Family inputFamily;

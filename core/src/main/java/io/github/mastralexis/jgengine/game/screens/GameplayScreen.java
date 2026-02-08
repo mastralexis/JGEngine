@@ -27,7 +27,7 @@ public class GameplayScreen implements Screen {
         scene.addGameSystem(new PlayerInputSystem());
         scene.addGameSystem(new PlayerControlSystem());
         scene.addGameSystem(new MovementSystem());
-        scene.addGameSystem(new RenderSystem(game.batch));
+        scene.addGameSystem(new DebugRenderSystem());
 
         createPlayer();
         createWall();
@@ -60,23 +60,24 @@ public class GameplayScreen implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
 
-        game.batch.begin();  // We must begin/end the batch because your RenderSystem calls batch.draw()
-        scene.update(delta); // This triggers RenderSystem.update() -> batch.draw()
+        game.batch.begin();  // begin/end the batch because your RenderSystem calls batch.draw()
+        scene.update(delta); // this triggers RenderSystem.update() -> batch.draw()
         game.batch.end();
 
         // =============== Temporary Exit Logic ===============
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(new MenuScreen(game)); // Return to menu
-            dispose(); // Clean up this screen
+//            game.setScreen(new MenuScreen(game)); // return to menu
+//            dispose(); // clean up this screen
+            Gdx.app.exit();
         }
         // =============== Temporary Exit Logic ===============
     }
 
     @Override public void pause() {}
     @Override public void resume() {}
-    @Override public void hide() {} // Called when leaving this screen
-    // We don't dispose textures here because they belong to Main.assets
-    // But if you had specific "Level 1" assets loaded just for this screen,
+    @Override public void hide() {} // called when leaving this screen
+    // we don't dispose textures here because they belong to Main.assets
+    // but if you had specific "Level 1" assets loaded just for this screen,
     // you would unload them here.
     @Override public void dispose() {}
     @Override public void show() {Gdx.input.setInputProcessor(null);}// Called when this screen becomes the current one

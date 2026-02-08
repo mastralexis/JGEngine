@@ -20,7 +20,7 @@ public class EntityFactory {
     }
 
     public GameObject createEnemy(String type, float x, float y) {
-        // 1. Find the data for "GOBLIN" or "BOSS"
+        // find the data for "GOBLIN" or "BOSS" for example
         JsonValue data = null;
         for (JsonValue entry : enemyData) {
             if (entry.getString("type").equals(type)) {
@@ -33,12 +33,12 @@ public class EntityFactory {
             throw new RuntimeException("Enemy type not found: " + type);
         }
 
-        // 2. Extract Data
+        // extract data
         String textureName = data.getString("texture");
         int hp = data.getInt("hp");
         float speed = data.getFloat("speed");
 
-        // 3. Build the GameObject
+        // build the GameObject
         return new GameObject(type)
             .addComponent(new TransformComponent(x, y))
             .addComponent(new SpriteComponent(game.assets.getTexture(textureName)))

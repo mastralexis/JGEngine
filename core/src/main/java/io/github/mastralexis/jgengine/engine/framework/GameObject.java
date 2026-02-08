@@ -2,11 +2,8 @@ package io.github.mastralexis.jgengine.engine.framework;
 
 import com.badlogic.gdx.utils.Bits;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class GameObject {
-    private static int currentId = 0;  // keep track of ids to so when an object is created to have that id
+    private static int currentId = 0;   // keep track of ids to so when an object is created to have that id
     private final int id;               // GameObject instance actual id
     private final String name;
     private boolean active;

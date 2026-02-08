@@ -22,17 +22,17 @@ public class DebugRenderSystem extends GameSystem {
 
     @Override
     public void update(float delta) {
-        // 1. Prepare the ShapeRenderer
+        // prepare the ShapeRenderer
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line); // Draw outlines (use Filled for solid)
         shapeRenderer.setColor(Color.GREEN); // Make the lines green
 
-        // 2. Iterate through all objects with colliders
+        // iterate through all objects with colliders
         for (GameObject go : scene.getGameObjects(colliderFamily)) {
             TransformComponent pos = go.getComponent(TransformComponent.class);
             BoxColliderComponent col = go.getComponent(BoxColliderComponent.class);
 
-            // Draw the rectangle based on the collider's HitBox data
-            // Note: If you implemented the offsets discussed earlier, use them here!
+            // draw the rectangle based on the collider's HitBox data
+            // if you implemented the offsets discussed earlier, use them here!
             shapeRenderer.rect(col.hitBox.x, col.hitBox.y, col.hitBox.width, col.hitBox.height);
         }
 

@@ -8,8 +8,6 @@ import com.badlogic.gdx.physics.box2d.Body;
  */
 public class PhysicsFactory {
     public Body createBox(float x, float y, float width, float height, boolean isStatic) {
-        // ... 20 lines of Box2D setup code ...
-        //return body;
         return null;
     }
 }

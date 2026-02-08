@@ -24,17 +24,17 @@ public class RenderSystem extends GameSystem {
             TransformComponent transform = go.getComponent(TransformComponent.class);
             if (transform == null) return;
             SpriteComponent sprite = go.getComponent(SpriteComponent.class);
-            // Get the origin (center of the sprite) for rotation
+            // get the origin (center of the sprite) for rotation
             float originX = sprite.width / 2f;
             float originY = sprite.height / 2f;
 
             batch.draw(
                 sprite.textureRegion,
-                transform.x, transform.y,      // Position
-                originX, originY,              // Origin (center of rotation)
-                sprite.width, sprite.height,   // Base Dimensions
+                transform.x, transform.y,           // Position
+                originX, originY,                   // Origin (center of rotation)
+                sprite.width, sprite.height,        // Base Dimensions
                 transform.scaleX, transform.scaleY, // Scale
-                transform.rotation             // Rotation
+                transform.rotation                  // Rotation
             );
         }
     }

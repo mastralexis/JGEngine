@@ -44,12 +44,12 @@ public class MenuScreen implements Screen {
         buttons.add(optionsButton);
         buttons.add(quitButton);
 
-        // Event Listener (mouse click)
+        // event Listener (mouse click)
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Logs.log("Menu", "Start Game pressed");
-                // 3. Switch Screen
+                // switch Screen
                 game.setScreen(new GameplayScreen(game));
             }
         });
@@ -65,12 +65,12 @@ public class MenuScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Logs.log("Menu", "Quitting application");
-                Gdx.app.exit(); // Close the app
+                Gdx.app.exit(); // close the app
             }
         });
 
         // 4. KEYBOARD LOGIC
-        // We add the listener to the STAGE so it catches keys globally
+        // add the listener to the STAGE so it catches keys globally
         stage.addListener(new InputListener() {
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
@@ -89,7 +89,7 @@ public class MenuScreen implements Screen {
                 }
 
                 if (keycode == Input.Keys.ENTER) {
-                    // Simulate a click on the currently selected button
+                    // simulate a click on the currently selected button
                     buttons.get(currentSelection).fire(new ChangeListener.ChangeEvent());
                     return true;
                 }
@@ -97,7 +97,7 @@ public class MenuScreen implements Screen {
             }
         });
 
-        // 6. Add Buttons to Table (with padding)
+        // add Buttons to Table (with padding)
         table.add(startButton).fillX().uniformX();
         table.row().pad(20, 0, 20, 0);
         table.add(optionsButton).fillX().uniformX();
@@ -107,7 +107,7 @@ public class MenuScreen implements Screen {
         updateButtonVisuals();
     }
 
-    // Helper method to change colors
+    // helper method to change colors
     private void updateButtonVisuals() {
         for (int i = 0; i < buttons.size; i++) {
             TextButton btn = buttons.get(i);
