@@ -1,12 +1,12 @@
-package io.github.mastralexis.jgengine.game.systems;
+package io.github.mastralexis.jgengine.engine.rendering;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import io.github.mastralexis.jgengine.engine.framework.Family;
 import io.github.mastralexis.jgengine.engine.framework.GameObject;
 import io.github.mastralexis.jgengine.engine.framework.GameSystem;
-import io.github.mastralexis.jgengine.engine.commons.components.BoxColliderComponent;
-import io.github.mastralexis.jgengine.engine.commons.components.TransformComponent;
+import io.github.mastralexis.jgengine.engine.physics.BoxColliderComponent;
+import io.github.mastralexis.jgengine.engine.physics.TransformComponent;
 
 public class DebugRenderSystem extends GameSystem {
     private final ShapeRenderer shapeRenderer;

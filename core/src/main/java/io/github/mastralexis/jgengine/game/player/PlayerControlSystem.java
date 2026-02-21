@@ -1,10 +1,9 @@
-package io.github.mastralexis.jgengine.game.systems;
+package io.github.mastralexis.jgengine.game.player;
 
 import io.github.mastralexis.jgengine.engine.framework.Family;
 import io.github.mastralexis.jgengine.engine.framework.GameObject;
 import io.github.mastralexis.jgengine.engine.framework.GameSystem;
-import io.github.mastralexis.jgengine.game.components.InputComponent;
-import io.github.mastralexis.jgengine.engine.commons.components.VelocityComponent;
+import io.github.mastralexis.jgengine.engine.physics.VelocityComponent;
 
 // Translates Input from InputComponent into Velocity (intent to motion)
 public class PlayerControlSystem extends GameSystem {

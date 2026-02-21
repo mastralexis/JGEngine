@@ -1,6 +1,5 @@
-package io.github.mastralexis.jgengine.game.components;
+package io.github.mastralexis.jgengine.game.player;
 
-import com.badlogic.gdx.Game;
 import io.github.mastralexis.jgengine.engine.framework.GameComponent;
 
 // intent

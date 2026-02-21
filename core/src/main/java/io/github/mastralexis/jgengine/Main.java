@@ -2,9 +2,8 @@ package io.github.mastralexis.jgengine;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import io.github.mastralexis.jgengine.engine.core.EngineAssetManager;
+import io.github.mastralexis.jgengine.engine.assets.EngineAssetManager;
 import io.github.mastralexis.jgengine.game.screens.DebugTitleScreen;
-import io.github.mastralexis.jgengine.game.screens.TitleScreen;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {

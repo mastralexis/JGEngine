@@ -1,4 +1,4 @@
-package io.github.mastralexis.jgengine.engine.commons.components;
+package io.github.mastralexis.jgengine.engine.rendering;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

@@ -1,11 +1,10 @@
-package io.github.mastralexis.jgengine.engine.commons.systems;
+package io.github.mastralexis.jgengine.engine.rendering;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.github.mastralexis.jgengine.engine.framework.Family;
 import io.github.mastralexis.jgengine.engine.framework.GameObject;
 import io.github.mastralexis.jgengine.engine.framework.GameSystem;
-import io.github.mastralexis.jgengine.engine.commons.components.TransformComponent;
-import io.github.mastralexis.jgengine.engine.commons.components.SpriteComponent;
+import io.github.mastralexis.jgengine.engine.physics.TransformComponent;
 
 public class RenderSystem extends GameSystem {
     private final SpriteBatch batch;

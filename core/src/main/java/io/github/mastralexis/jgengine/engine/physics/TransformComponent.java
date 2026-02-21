@@ -1,4 +1,4 @@
-package io.github.mastralexis.jgengine.engine.commons.components;
+package io.github.mastralexis.jgengine.engine.physics;
 
 import io.github.mastralexis.jgengine.engine.framework.GameComponent;
 

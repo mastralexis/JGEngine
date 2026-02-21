@@ -5,13 +5,18 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.mastralexis.jgengine.Main;
-import io.github.mastralexis.jgengine.engine.commons.components.*;
-import io.github.mastralexis.jgengine.engine.commons.systems.MovementSystem;
-import io.github.mastralexis.jgengine.engine.commons.systems.RenderSystem;
+import io.github.mastralexis.jgengine.engine.physics.MovementSystem;
 import io.github.mastralexis.jgengine.engine.framework.GameObject;
 import io.github.mastralexis.jgengine.engine.framework.Scene;
-import io.github.mastralexis.jgengine.game.components.*;
-import io.github.mastralexis.jgengine.game.systems.*;
+import io.github.mastralexis.jgengine.engine.physics.BoxColliderComponent;
+import io.github.mastralexis.jgengine.engine.physics.TransformComponent;
+import io.github.mastralexis.jgengine.engine.physics.VelocityComponent;
+import io.github.mastralexis.jgengine.engine.rendering.DebugRenderSystem;
+import io.github.mastralexis.jgengine.engine.rendering.SpriteComponent;
+import io.github.mastralexis.jgengine.game.player.InputComponent;
+import io.github.mastralexis.jgengine.game.player.PlayerComponent;
+import io.github.mastralexis.jgengine.game.player.PlayerControlSystem;
+import io.github.mastralexis.jgengine.game.player.PlayerInputSystem;
 
 public class GameplayScreen implements Screen {
     final Main game;
