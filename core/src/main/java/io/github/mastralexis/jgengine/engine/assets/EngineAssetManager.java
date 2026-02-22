@@ -1,9 +1,15 @@
 package io.github.mastralexis.jgengine.engine.assets;
 
+import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Disposable;
+
+import java.awt.*;
 
 /**
  * TODO: UNIMPLEMENTED METHODS
@@ -30,23 +36,26 @@ public class EngineAssetManager implements Disposable {
 
     public final AssetManager manager = new AssetManager();
 
-    public void queueStandardAssets() {
-        // Queue loading tasks (doesn't load yet)
-        manager.load("libgdx.png", Texture.class);
-        manager.load("skins/uiskin.json", Skin.class);
-        manager.load("sprites/player/wayne-t-pose.png", Texture.class);
-    }
+    // Load Assets
+    public void loadTexture(String filePath) { manager.load(filePath, Texture.class); }
+    public void loadSkin(String filePath) { manager.load(filePath, Skin.class); }
+    public void loadFont(String filePath) { manager.load(filePath, Font.class); }
+    public void loadSound(String filePath) { manager.load(filePath, Sound.class); }
+    public void loadMusic(String filePath) { manager.load(filePath, Music.class); }
 
-    public void finishLoading() {
-        manager.finishLoading(); // Blocks until done
-    }
+    // Loading execution
+    public void finishLoading() { manager.finishLoading(); } // blocks until done
+    public boolean update() { return manager.update(); }// returns true if loading is done
 
-    public Texture getTexture(String name) {
-        return manager.get(name, Texture.class);
-    }
+    // Retrieve loaded assets
+    public Texture getTexture(String name) { return manager.get(name, Texture.class); }
+    public Skin getSkin(String name) { return manager.get(name, Skin.class); }
+    public Sound getSound(String name) { return manager.get(name, Sound.class); }
+    public Music getMusic(String name) { return manager.get(name, Music.class); }
 
-    public Skin getSkin(String name) {
-        return manager.get(name, Skin.class);
+    // Cleanup
+    public void unload(String filePath) {
+        if (manager.isLoaded(filePath)) manager.unload(filePath);
     }
 
     @Override
@@ -54,15 +63,4 @@ public class EngineAssetManager implements Disposable {
         manager.dispose();
     }
 
-    // 2. LEVEL 1 Specifics
-    public void queueLevel1Assets() {
-//        manager.load("maps/level1_forest.png", Texture.class);
-//        manager.load("music/forest_theme.mp3", Music.class);
-    }
-
-    public void unloadLevelAssets() {
-        // Unload specific files to free RAM
-        // Note: You must be precise here!
-
-    }
 }

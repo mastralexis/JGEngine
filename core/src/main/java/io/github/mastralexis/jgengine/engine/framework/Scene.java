@@ -29,6 +29,8 @@ public class Scene {
     public void addGameSystem(GameSystem gameSystem) {
         systems.add(gameSystem);        // add system
         gameSystem.attach(this); // make the system access the scene
+        systems.sort((s1, s2) ->
+            Integer.compare((s1.priority), s2.priority));  // sort systems (lower priority run first)
     }
 
     public void update(float delta) {

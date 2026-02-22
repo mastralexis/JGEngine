@@ -18,10 +18,12 @@ public class RenderSystem extends GameSystem {
 
     @Override
     public void update(float deltaTime) {
+        batch.begin();
         for (GameObject go : scene.getGameObjects(renderFamily)) {
             // to use this system we only need Position and SpriteComponents
             TransformComponent transform = go.getComponent(TransformComponent.class);
-            if (transform == null) return;
+            if (transform == null) continue;
+
             SpriteComponent sprite = go.getComponent(SpriteComponent.class);
             // get the origin (center of the sprite) for rotation
             float originX = sprite.width / 2f;
@@ -36,5 +38,6 @@ public class RenderSystem extends GameSystem {
                 transform.rotation                  // Rotation
             );
         }
+        batch.end();
     }
 }

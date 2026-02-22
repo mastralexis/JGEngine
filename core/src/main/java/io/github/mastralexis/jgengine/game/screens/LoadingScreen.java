@@ -6,23 +6,11 @@ import io.github.mastralexis.jgengine.Main;
 
 public class LoadingScreen implements Screen {
     final Main game;
-    int targetLevel;    // the level we are loading into
+    private final Screen nextScreen;    // the screen to load next
 
-    public LoadingScreen(Main game, int targetLevel) {
+    public LoadingScreen(Main game, Screen nextScreen) {
         this.game = game;
-        this.targetLevel = targetLevel;
-
-        // upload old assets
-        game.assets.unloadLevelAssets();
-
-        // queue new assets
-        if (targetLevel == 1) game.assets.queueLevel1Assets();
-        //else if (targetLevel == 2) game.assets.queueLevel2Assets();
-    }
-
-    @Override
-    public void show() {
-
+        this.nextScreen = nextScreen;
     }
 
     @Override
@@ -30,38 +18,20 @@ public class LoadingScreen implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);
 
         // update() returns TRUE when loading is done
-        if (game.assets.manager.update()) {
+        if (game.assets.update()) {
             // loading complete! Switch to the actual game
-            game.setScreen(new GameplayScreen(game));
+            game.setScreen(nextScreen);
+            dispose();  // dispose of that screen
+        } else {
+            float progress = game.assets.manager.getProgress();
+            System.out.println("Loading: " + (progress * 100) + "%");
         }
-
-        // draw a loading bar here using game.assets.manager.getProgress()
-        float progress = game.assets.manager.getProgress();
-        System.out.println("Loading... " + (progress * 100) + "%");
     }
 
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
+    @Override public void resize(int width, int height) {}
+    @Override public void pause() {}
+    @Override public void resume() {}
+    @Override public void hide() {}
+    @Override public void dispose() {}
+    @Override public void show() {}
 }

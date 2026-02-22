@@ -16,7 +16,6 @@ public class Main extends Game {
 
         // init and Load Assets
         assets = new EngineAssetManager();
-        assets.queueStandardAssets(); // queues assets
         assets.finishLoading();       // blocks until everything is ready
 
         // start the Menu

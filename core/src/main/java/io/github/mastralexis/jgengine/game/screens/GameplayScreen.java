@@ -12,6 +12,7 @@ import io.github.mastralexis.jgengine.engine.physics.BoxColliderComponent;
 import io.github.mastralexis.jgengine.engine.physics.TransformComponent;
 import io.github.mastralexis.jgengine.engine.physics.VelocityComponent;
 import io.github.mastralexis.jgengine.engine.rendering.DebugRenderSystem;
+import io.github.mastralexis.jgengine.engine.rendering.RenderSystem;
 import io.github.mastralexis.jgengine.engine.rendering.SpriteComponent;
 import io.github.mastralexis.jgengine.game.player.InputComponent;
 import io.github.mastralexis.jgengine.game.player.PlayerComponent;
@@ -24,7 +25,6 @@ public class GameplayScreen implements Screen {
 
     public GameplayScreen(Main game) {
         this.game = game;
-
         scene = new Scene();    // create the scene of that Screen
 
         // add systems that are going to be used in that screen
@@ -33,7 +33,11 @@ public class GameplayScreen implements Screen {
         scene.addGameSystem(new PlayerControlSystem());
         scene.addGameSystem(new MovementSystem());
         scene.addGameSystem(new DebugRenderSystem());
+    }
 
+    // runs after the screen is fully active
+    @Override public void show() {
+        Gdx.input.setInputProcessor(null);
         createPlayer();
         createWall();
     }
@@ -64,15 +68,10 @@ public class GameplayScreen implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
-
-        game.batch.begin();  // begin/end the batch because your RenderSystem calls batch.draw()
         scene.update(delta); // this triggers RenderSystem.update() -> batch.draw()
-        game.batch.end();
 
         // =============== Temporary Exit Logic ===============
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-//            game.setScreen(new MenuScreen(game)); // return to menu
-//            dispose(); // clean up this screen
             Gdx.app.exit();
         }
         // =============== Temporary Exit Logic ===============
@@ -85,7 +84,6 @@ public class GameplayScreen implements Screen {
     // but if you had specific "Level 1" assets loaded just for this screen,
     // you would unload them here.
     @Override public void dispose() {}
-    @Override public void show() {Gdx.input.setInputProcessor(null);}// Called when this screen becomes the current one
     @Override public void resize(int width, int height) {}// If you add a Camera later, update it here
 
 }
