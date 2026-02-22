@@ -32,7 +32,7 @@ public class TitleScreen implements Screen {
 
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            game.setScreen(new GameplayScreen(game)); // go to GameScreen
+            game.setScreen(new GameplayScreen(game, "placeholder")); // go to GameScreen
             dispose(); // clean up this screen
         }
 

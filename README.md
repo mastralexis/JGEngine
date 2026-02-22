@@ -24,6 +24,18 @@ It uses Gradle. You can run it directly from the terminal:
 - Linux / Mac:
   - `./gradlew lwjgl3:run`
 
+## TODO List
+- [ ] Camera and Viewport System
+- [ ] Decouple movement from frame rate
+- [ ] Input Manager / Action Mapping (Abstract hardware keys into logical actions)
+- [ ] Observer pattern for Systems to communicate with each other
+- [ ] Animation System
+- [ ] Audio System
+- [ ] Particle System
+- [ ] JSON Parsing (loading objects from json)
+- [ ] Factory Design Pattern for spawning objects
+- [ ] System UI
+
 > **Created by:** mastralexis  
 > **Framework:** LibGDX (LWJGL3)  
 > **Architecture:** Composition over Inheritance

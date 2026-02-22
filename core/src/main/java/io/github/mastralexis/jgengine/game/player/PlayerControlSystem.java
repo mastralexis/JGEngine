@@ -21,26 +21,20 @@ public class PlayerControlSystem extends GameSystem {
             VelocityComponent vel = obj.getComponent(VelocityComponent.class);
 
             // apply the Input to the Velocity
-            // IMPORTANT: We only modify velocity if there IS input.
-            // this allows knockback/external forces to degrade naturally if we aren't pressing keys.
-
+            // modify velocity IF there is input.
             if (input.horizontal != 0 || input.vertical != 0) {
                 vel.x = input.horizontal * vel.speed;   // speed * axis
                 vel.y = input.vertical * vel.speed;
 
-                // Normalize vector for diagonals
+                // normalize vector for diagonals
                 if (input.horizontal != 0 && input.vertical != 0) {
                     vel.x *= 0.7071f;
                     vel.y *= 0.7071f;
                 }
             } else {
-                // if no input, WE decide how to stop.
-                // instant stop (Arcade style):
+                // if no input stop instantly (no sliding around)
                 vel.x = 0;
                 vel.y = 0;
-
-                // OR Friction stop (Better for knockback):
-                // vel.x = MathUtils.lerp(vel.x, 0, 10 * delta);
             }
         }
     }

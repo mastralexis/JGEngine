@@ -16,15 +16,15 @@ public class DebugRenderSystem extends GameSystem {
         this.priority = 200; // Run AFTER the normal RenderSystem so lines are drawn ON TOP
         this.shapeRenderer = new ShapeRenderer();
 
-        // We only care about things that have a Position and a Collider
+        // we only care about things that have a Position and a Collider
         this.colliderFamily = Family.of(TransformComponent.class, BoxColliderComponent.class);
     }
 
     @Override
     public void update(float delta) {
         // prepare the ShapeRenderer
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line); // Draw outlines (use Filled for solid)
-        shapeRenderer.setColor(Color.GREEN); // Make the lines green
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);  // draw outlines
+        shapeRenderer.setColor(Color.GREEN);                // make the lines green
 
         // iterate through all objects with colliders
         for (GameObject go : scene.getGameObjects(colliderFamily)) {
@@ -32,7 +32,6 @@ public class DebugRenderSystem extends GameSystem {
             BoxColliderComponent col = go.getComponent(BoxColliderComponent.class);
 
             // draw the rectangle based on the collider's HitBox data
-            // if you implemented the offsets discussed earlier, use them here!
             shapeRenderer.rect(col.hitBox.x, col.hitBox.y, col.hitBox.width, col.hitBox.height);
         }
 

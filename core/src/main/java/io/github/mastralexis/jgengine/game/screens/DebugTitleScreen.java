@@ -33,7 +33,7 @@ public class DebugTitleScreen implements Screen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             game.assets.loadTexture("sprites/player/wayne-t-pose.png");
-            GameplayScreen targetScreen = new GameplayScreen(game);
+            GameplayScreen targetScreen = new GameplayScreen(game, "placeholder");
             game.setScreen(new LoadingScreen(game, targetScreen)); // go to GameScreen
             dispose(); // clean up this screen
         }

@@ -20,7 +20,6 @@ public class EntityFactory {
     }
 
     public GameObject createEnemy(String type, float x, float y) {
-        // find the data for "GOBLIN" or "BOSS" for example
         JsonValue data = null;
         for (JsonValue entry : enemyData) {
             if (entry.getString("type").equals(type)) {

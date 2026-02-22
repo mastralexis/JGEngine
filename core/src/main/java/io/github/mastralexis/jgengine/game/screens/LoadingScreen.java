@@ -19,7 +19,7 @@ public class LoadingScreen implements Screen {
 
         // update() returns TRUE when loading is done
         if (game.assets.update()) {
-            // loading complete! Switch to the actual game
+            // switch to the game screen
             game.setScreen(nextScreen);
             dispose();  // dispose of that screen
         } else {

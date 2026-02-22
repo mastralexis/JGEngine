@@ -22,13 +22,15 @@ import io.github.mastralexis.jgengine.game.player.PlayerInputSystem;
 public class GameplayScreen implements Screen {
     final Main game;
     Scene scene;        // object manager
+    String currentMapPath;
 
-    public GameplayScreen(Main game) {
+    public GameplayScreen(Main game, String mapPath) {
         this.game = game;
         scene = new Scene();    // create the scene of that Screen
+        currentMapPath = mapPath;
 
         // add systems that are going to be used in that screen
-        //scene.addGameSystem(new RenderSystem(game.batch));
+        // scene.addGameSystem(new RenderSystem(game.batch));
         scene.addGameSystem(new PlayerInputSystem());
         scene.addGameSystem(new PlayerControlSystem());
         scene.addGameSystem(new MovementSystem());
@@ -49,8 +51,8 @@ public class GameplayScreen implements Screen {
             .addComponent(new TransformComponent(100, 100))
             .addComponent(new VelocityComponent(250f))
             .addComponent(new PlayerComponent())
-            .addComponent(new BoxColliderComponent(sprite.width - 25, sprite.height)).
-            addComponent(new InputComponent());
+            .addComponent(new BoxColliderComponent(sprite.width - 25, sprite.height))
+            .addComponent(new InputComponent());
         scene.addGameObject(player);
     }
 
@@ -80,9 +82,6 @@ public class GameplayScreen implements Screen {
     @Override public void pause() {}
     @Override public void resume() {}
     @Override public void hide() {} // called when leaving this screen
-    // we don't dispose textures here because they belong to Main.assets
-    // but if you had specific "Level 1" assets loaded just for this screen,
-    // you would unload them here.
     @Override public void dispose() {}
     @Override public void resize(int width, int height) {}// If you add a Camera later, update it here
 
