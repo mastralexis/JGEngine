@@ -25,6 +25,7 @@ It uses Gradle. You can run it directly from the terminal:
   - `./gradlew lwjgl3:run`
 
 ## TODO List
+- [ ] Object Pooling
 - [ ] Camera and Viewport System
 - [ ] Decouple movement from frame rate
 - [ ] Input Manager / Action Mapping (Abstract hardware keys into logical actions)
@@ -32,6 +33,8 @@ It uses Gradle. You can run it directly from the terminal:
 - [ ] Animation System
 - [ ] Audio System
 - [ ] Particle System
+- [ ] Entity Hierarchy
+- [ ] Serialization (save/load system for player progression and settings)
 - [ ] JSON Parsing (loading objects from json)
 - [ ] Factory Design Pattern for spawning objects
 - [ ] System UI
